@@ -8,7 +8,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * @usage
  * ```typescript
- * import { SpeechKit } from '@ionic-native/speechkit';
+ * import { SpeechKit } from '@ionic-native/speechkit/ngx';
  *
  * constructor(private speechkit: SpeechKit) { }
  *
@@ -25,31 +25,27 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   plugin: 'cordova-plugin-nuance-speechkit',
   pluginRef: 'plugins.speechkit',
   repo: 'https://github.com/Shmarkus/cordova-plugin-nuance-speechkit',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class SpeechKit extends IonicNativePlugin {
-
   /**
    * Speak text out loud in given language
    * @returns {Promise<string>}
    */
   @Cordova()
-  tts(
-    text: string,
-    language: string,
-    voice: string
-  ): Promise<string> { return; }
+  tts(text: string, language: string, voice: string): Promise<string> {
+    return;
+  }
 
   /**
    * Try to recognize what the user said
    * @returns {Promise<string>}
    */
   @Cordova({
-    platforms: ['Android']
+    platforms: ['Android'],
   })
-  asr(
-    language: string
-  ): Promise<string> { return; }
-
+  asr(language: string): Promise<string> {
+    return;
+  }
 }

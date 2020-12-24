@@ -11,9 +11,25 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * NOTE: on iOS in order to collect demographic, age, gender data etc. you should additionally include AdSupport.framework into your project.
  *
+ * ## Using capacitor?
+ * For Android you'll have to add in __android/app/src/main/AndroidManfiest.xml__ under `<application>`
+ * ```
+ * <meta-data
+ *      tools:replace="android:value"
+ *      android:name="firebase_analytics_collection_enabled"
+ *      android:value="true"/>
+ *
+ * <meta-data
+ *      tools:replace="android:value"
+ *      android:name="google_analytics_automatic_screen_reporting_enabled"
+ *      android:value="false"/>
+ * ```
+ *
+ * And in the same file, you'll have to add `xmlns:tools="http://schemas.android.com/tools"` to your _manifest_ tag.
+ *
  * @usage
  * ```typescript
- * import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+ * import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
  *
  *
  * constructor(private firebaseAnalytics: FirebaseAnalytics) { }
@@ -31,7 +47,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   plugin: 'cordova-plugin-firebase-analytics',
   pluginRef: 'cordova.plugins.firebase.analytics',
   repo: 'https://github.com/chemerisuk/cordova-plugin-firebase-analytics',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class FirebaseAnalytics extends IonicNativePlugin {
@@ -88,6 +104,15 @@ export class FirebaseAnalytics extends IonicNativePlugin {
    */
   @Cordova({ sync: true })
   setCurrentScreen(name: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Clears all analytics data for this instance from the device and resets the app instance ID
+   * @return {Promise<void>} Returns a promise
+   */
+  @Cordova({ sync: true })
+  resetAnalyticsData(): Promise<void> {
     return;
   }
 }

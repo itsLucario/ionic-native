@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export interface LastCamStartupOptions {
   /** The left edge in pixels, default 0 */
@@ -33,7 +33,7 @@ export interface LastCamStartupOptions {
   plugin: 'cordova-plugin-last-cam',
   pluginRef: 'LastCam',
   repo: 'https://github.com/bengejd/cordova-plugin-last-cam',
-  platforms: ['iOS']
+  platforms: ['iOS'],
 })
 @Injectable()
 export class LastCam extends IonicNativePlugin {
@@ -44,7 +44,7 @@ export class LastCam extends IonicNativePlugin {
    */
   @Cordova({
     successIndex: 1,
-    errorIndex: 2
+    errorIndex: 2,
   })
   startCamera(options: LastCamStartupOptions): Promise<any> {
     return;
@@ -83,7 +83,7 @@ export class LastCam extends IonicNativePlugin {
    */
   @Cordova({
     successIndex: 0,
-    errorIndex: 1
+    errorIndex: 1,
   })
   takePicture(): Promise<any> {
     return;
@@ -104,7 +104,7 @@ export class LastCam extends IonicNativePlugin {
    */
   @Cordova({
     successIndex: 0,
-    errorIndex: 1
+    errorIndex: 1,
   })
   stopVideoCapture(): Promise<any> {
     return;
@@ -116,7 +116,7 @@ export class LastCam extends IonicNativePlugin {
    */
   @Cordova({
     successIndex: 0,
-    errorIndex: 1
+    errorIndex: 1,
   })
   recordingTimer(): Promise<any> {
     return;
@@ -129,7 +129,7 @@ export class LastCam extends IonicNativePlugin {
   @Cordova({
     successIndex: 0,
     errorIndex: 1,
-    observable: true
+    observable: true,
   })
   watchRecordingTimer(): Observable<any> {
     return;

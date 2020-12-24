@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
  *
  * @usage
  * ```typescript
- * import { PinCheck } from '@ionic-native/pin-check';
+ * import { PinCheck } from '@ionic-native/pin-check/ngx';
  * import { Platform } from 'ionic-angular';
  *
  * constructor(private pinCheck: PinCheck, private platform: Platform) { }
@@ -29,7 +29,7 @@ import { Injectable } from '@angular/core';
   plugin: 'cordova-plugin-pincheck',
   pluginRef: 'cordova.plugins.PinCheck',
   repo: 'https://github.com/shangyilim/cordova-plugin-pincheck',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class PinCheck extends IonicNativePlugin {

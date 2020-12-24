@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
 
@@ -9,7 +8,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * @usage
  * ```typescript
- * import { hce } from '@ionic-native/hce';
+ * import { hce } from '@ionic-native/hce/ngx';
  *
  *
  * constructor(private hce: hce) { }
@@ -36,11 +35,10 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   repo: 'https://github.com/don/cordova-plugin-hce',
   install: '',
   installVariables: ['AID_FILTER'],
-  platforms: ['Android']
+  platforms: ['Android'],
 })
 @Injectable()
 export class HCE extends IonicNativePlugin {
-
   /**
    * Registers command receiver.
    * @param onCommand {HCECommandEvent} The event handler.
@@ -61,7 +59,6 @@ export class HCE extends IonicNativePlugin {
   registerDeactivatedCallback(ok: HCEDeactivatedEvent, fail?: Function): void {
     return; // We add return; here to avoid any IDE / Compiler errors
   }
-
 
   /**
    * Sends response APDU.

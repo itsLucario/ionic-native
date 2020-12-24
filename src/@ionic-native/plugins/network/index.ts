@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  Cordova,
-  CordovaCheck,
-  CordovaProperty,
-  IonicNativePlugin,
-  Plugin
-} from '@ionic-native/core';
-import { Observable } from 'rxjs/Observable';
-import { merge } from 'rxjs/observable/merge';
+import { Cordova, CordovaCheck, CordovaProperty, IonicNativePlugin, Plugin } from '@ionic-native/core';
+import { Observable, merge } from 'rxjs';
 
 declare const navigator: any;
 
@@ -16,20 +9,21 @@ export enum Connection {
   ETHERNET,
   WIFI,
   CELL_2G,
-  CELL_3G ,
+  CELL_3G,
   CELL_4G,
   CELL,
-  NONE
+  NONE,
 }
 
 /**
  * @name Network
+ * @premier network-information
  * @description
  * Requires Cordova plugin: cordova-plugin-network-information. For more info, please see the [Network plugin docs](https://github.com/apache/cordova-plugin-network-information).
  *
  * @usage
  * ```typescript
- * import { Network } from '@ionic-native/network';
+ * import { Network } from '@ionic-native/network/ngx';
  *
  * constructor(private network: Network) { }
  *
@@ -69,11 +63,10 @@ export enum Connection {
   plugin: 'cordova-plugin-network-information',
   pluginRef: 'navigator.connection',
   repo: 'https://github.com/apache/cordova-plugin-network-information',
-  platforms: ['Amazon Fire OS', 'Android', 'Browser', 'iOS', 'Windows']
+  platforms: ['Amazon Fire OS', 'Android', 'Browser', 'iOS', 'Windows'],
 })
 @Injectable()
 export class Network extends IonicNativePlugin {
-
   /**
    * Constants for possible connection types
    */
@@ -85,27 +78,27 @@ export class Network extends IonicNativePlugin {
     CELL_3G: '3g',
     CELL_4G: '4g',
     CELL: 'cellular',
-    NONE: 'none'
+    NONE: 'none',
   };
 
   /**
    * Connection type
    * @return {string}
    */
-  @CordovaProperty type: string;
+  @CordovaProperty() type: string;
 
   /**
    * Downlink Max Speed
    * @return {string}
    */
-  @CordovaProperty downlinkMax: string;
+  @CordovaProperty() downlinkMax: string;
 
   /**
    * Returns an observable to watch connection changes
    * @return {Observable<any>}
    */
   @CordovaCheck()
-  onchange(): Observable<any> {
+  onChange(): Observable<any> {
     return merge(this.onConnect(), this.onDisconnect());
   }
 
@@ -116,7 +109,7 @@ export class Network extends IonicNativePlugin {
   @Cordova({
     eventObservable: true,
     event: 'offline',
-    element: document
+    element: document,
   })
   onDisconnect(): Observable<any> {
     return;
@@ -129,7 +122,7 @@ export class Network extends IonicNativePlugin {
   @Cordova({
     eventObservable: true,
     event: 'online',
-    element: document
+    element: document,
   })
   onConnect(): Observable<any> {
     return;

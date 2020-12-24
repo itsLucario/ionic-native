@@ -8,9 +8,11 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * Requires Cordova plugin: `cordova-plugin-pin-dialog`. For more info, please see the [Pin Dialog plugin docs](https://github.com/Paldom/PinDialog).
  *
+ *
+ *
  * @usage
  * ```typescript
- * import { PinDialog } from '@ionic-native/pin-dialog';
+ * import { PinDialog } from '@ionic-native/pin-dialog/ngx';
  *
  *
  * constructor(private pinDialog: PinDialog) { }
@@ -31,7 +33,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   plugin: 'cordova-plugin-pin-dialog',
   pluginRef: 'plugins.pinDialog',
   repo: 'https://github.com/Paldom/PinDialog',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class PinDialog extends IonicNativePlugin {
@@ -44,13 +46,9 @@ export class PinDialog extends IonicNativePlugin {
    */
   @Cordova({
     successIndex: 1,
-    errorIndex: 4 // no error callback
+    errorIndex: 4, // no error callback
   })
-  prompt(
-    message: string,
-    title: string,
-    buttons: string[]
-  ): Promise<{ buttonIndex: number; input1: string }> {
+  prompt(message: string, title: string, buttons: string[]): Promise<{ buttonIndex: number; input1: string }> {
     return;
   }
 }

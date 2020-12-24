@@ -8,7 +8,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * @usage
  * ```typescript
- * import { HeaderColor } from '@ionic-native/header-color';
+ * import { HeaderColor } from '@ionic-native/header-color/ngx';
  *
  * constructor(private headerColor: HeaderColor) { }
  *
@@ -22,11 +22,10 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   plugin: 'cordova-plugin-headercolor',
   pluginRef: 'plugins.headerColor',
   repo: 'https://github.com/tomloprod/cordova-plugin-headercolor',
-  platforms: ['Android']
+  platforms: ['Android'],
 })
 @Injectable()
 export class HeaderColor extends IonicNativePlugin {
-
   /**
    * Set a color to the task header
    * @param color {string} The hex value of the color
@@ -35,8 +34,9 @@ export class HeaderColor extends IonicNativePlugin {
   @Cordova({
     callbackStyle: 'object',
     successName: 'success',
-    errorName: 'failure'
+    errorName: 'failure',
   })
-  tint(color: string): Promise<any> { return; }
-
+  tint(color: string): Promise<any> {
+    return;
+  }
 }

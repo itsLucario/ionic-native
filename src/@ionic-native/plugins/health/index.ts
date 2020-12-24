@@ -75,7 +75,7 @@ export interface HealthQueryOptionsAggregated {
    * if specified, aggregation is grouped an array of "buckets" (windows of time),
    * supported values are: 'hour', 'day', 'week', 'month', 'year'.
    */
-  bucket: string;
+  bucket?: string;
 
   /**
    * In Android, it is possible to query for "raw" steps or to select those as filtered by the Google Fit app.
@@ -167,7 +167,7 @@ export interface HealthData {
  *
  * @usage
  * ```typescript
- * import { Health } from '@ionic-native/health';
+ * import { Health } from '@ionic-native/health/ngx';
  *
  *
  * constructor(private health: Health) { }
@@ -203,7 +203,7 @@ export interface HealthData {
   plugin: 'cordova-plugin-health',
   pluginRef: 'navigator.health',
   repo: 'https://github.com/dariosalvi78/cordova-plugin-health',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class Health extends IonicNativePlugin {
@@ -213,7 +213,7 @@ export class Health extends IonicNativePlugin {
    * @return {Promise<boolean>}
    */
   @Cordova({
-    callbackOrder: 'reverse'
+    callbackOrder: 'reverse',
   })
   isAvailable(): Promise<boolean> {
     return;
@@ -231,7 +231,7 @@ export class Health extends IonicNativePlugin {
    * @return {Promise<any>}
    */
   @Cordova({
-    callbackOrder: 'reverse'
+    callbackOrder: 'reverse',
   })
   promptInstallFit(): Promise<any> {
     return;
@@ -253,7 +253,7 @@ export class Health extends IonicNativePlugin {
    * In Android 6 and over, this function will also ask for some dynamic permissions if needed
    * (e.g. in the case of "distance", it will need access to ACCESS_FINE_LOCATION).
    *
-   * @param {Array<string | HealthDataType>} datatypes a list of data types you want to be granted access to.
+   * @param {string[] | HealthDataType[]} datatypes a list of data types you want to be granted access to.
    * @return {Promise<any>}
    */
   @Cordova()
@@ -266,10 +266,10 @@ export class Health extends IonicNativePlugin {
    *
    * Quirks of isAuthorized()
    *
-   * In iOS, this function will only check authorization status for writeable data.
+   * In iOS, this function will only check authorization status for writable data.
    * Read-only data will always be considered as not authorized. This is an intended behaviour of HealthKit.
    *
-   * @param {Array<string | HealthDataType>} datatypes a list of data types you want to check access of, same as in requestAuthorization
+   * @param {string[] | HealthDataType[]} datatypes a list of data types you want to check access of, same as in requestAuthorization
    * @return {Promise<boolean>} Returns a promise that resolves with a boolean that indicates the authorization status
    */
   @Cordova()
@@ -335,9 +335,7 @@ export class Health extends IonicNativePlugin {
    * @return {Promise<HealthData[]>}
    */
   @Cordova()
-  queryAggregated(
-    queryOptionsAggregated: HealthQueryOptionsAggregated
-  ): Promise<HealthData[]> {
+  queryAggregated(queryOptionsAggregated: HealthQueryOptionsAggregated): Promise<HealthData[]> {
     return;
   }
 

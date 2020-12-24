@@ -1,5 +1,5 @@
 import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 /**
@@ -22,7 +22,7 @@ export interface IPedometerData {
  *
  * @usage
  * ```typescript
- * import { Pedometer } from '@ionic-native/pedometer';
+ * import { Pedometer } from '@ionic-native/pedometer/ngx';
  *
  * Pedometer.isDistanceAvailable()
  *   .then((available: boolean) => console.log(available))
@@ -39,7 +39,7 @@ export interface IPedometerData {
   plugin: 'cordova-plugin-pedometer',
   pluginRef: 'pedometer',
   repo: 'https://github.com/leecrossley/cordova-plugin-pedometer',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class Pedometer extends IonicNativePlugin {
@@ -83,7 +83,7 @@ export class Pedometer extends IonicNativePlugin {
    */
   @Cordova({
     observable: true,
-    clearFunction: 'stopPedometerUpdates'
+    clearFunction: 'stopPedometerUpdates',
   })
   startPedometerUpdates(): Observable<IPedometerData> {
     return;
@@ -107,12 +107,9 @@ export class Pedometer extends IonicNativePlugin {
    * @return {Promise<IPedometerData>} Returns a promise that resolves when pedometer data found
    */
   @Cordova({
-    callbackOrder: 'reverse'
+    callbackOrder: 'reverse',
   })
-  queryData(options: {
-    startDate: Date;
-    endDate: Date;
-  }): Promise<IPedometerData> {
+  queryData(options: { startDate: Date; endDate: Date }): Promise<IPedometerData> {
     return;
   }
 }

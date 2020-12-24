@@ -26,7 +26,7 @@ export interface VideoOptions {
  *
  * @usage
  * ```typescript
- * import { VideoPlayer } from '@ionic-native/video-player';
+ * import { VideoPlayer } from '@ionic-native/video-player/ngx';
  *
  * constructor(private videoPlayer: VideoPlayer) { }
  *
@@ -48,7 +48,7 @@ export interface VideoOptions {
   plugin: 'https://github.com/moust/cordova-plugin-videoplayer.git',
   pluginRef: 'VideoPlayer',
   repo: 'https://github.com/moust/cordova-plugin-videoplayer',
-  platforms: ['Android']
+  platforms: ['Android'],
 })
 @Injectable()
 export class VideoPlayer extends IonicNativePlugin {

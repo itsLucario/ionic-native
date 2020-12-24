@@ -31,6 +31,11 @@ export interface AppsflyerOptions {
    * default false 	Accessing AppsFlyer Attribution / Conversion Data from the SDK (Deferred Deeplinking). Read more: Android, iOS. AppsFlyer plugin will return attribution data in onSuccess callback.
    */
   onInstallConversionDataListener?: boolean;
+  
+  /**
+   * time for the sdk to wait before launch - IOS 14 ONLY!
+   */
+  waitForATTUserAuthorization?: number;
 }
 
 export interface AppsflyerEvent {
@@ -52,7 +57,7 @@ export interface AppsflyerInviteOptions {
  *
  * @usage
  * ```typescript
- * import { Appsflyer } from '@ionic-native/appsflyer';
+ * import { Appsflyer } from '@ionic-native/appsflyer/ngx';
  *
  *
  * constructor(private appsflyer: Appsflyer) { }
@@ -75,7 +80,7 @@ export interface AppsflyerInviteOptions {
   pluginRef: 'window.plugins.appsFlyer',
   repo: 'https://github.com/AppsFlyerSDK/cordova-plugin-appsflyer-sdk',
   platforms: ['iOS', 'Android'],
-  install: 'Add to config.xml like stated on github and then start'
+  install: 'Add to config.xml like stated on github and then start',
 })
 @Injectable()
 export class Appsflyer extends IonicNativePlugin {
@@ -94,8 +99,8 @@ export class Appsflyer extends IonicNativePlugin {
    * @param {string} eventName custom event name, is presented in your dashboard
    * @param {AppsflyerEvent} eventValues event details
    */
-  @Cordova({ sync: true })
-  trackEvent(eventName: string, eventValues: AppsflyerEvent): void {}
+  @Cordova()
+  logEvent(eventName: string, eventValues: AppsflyerEvent): void {}
 
   /**
    * Setting your own Custom ID enables you to cross-reference your own unique ID with AppsFlyer’s user ID and the other devices’ IDs. This ID is available in AppsFlyer CSV reports along with postbacks APIs for cross-referencing with you internal IDs.
@@ -109,7 +114,7 @@ export class Appsflyer extends IonicNativePlugin {
    * @param {boolean} customerUserId In some extreme cases you might want to shut down all SDK tracking due to legal and privacy compliance. This can be achieved with the isStopTracking API. Once this API is invoked, our SDK will no longer communicate with our servers and stop functioning.
    */
   @Cordova({ sync: true })
-  stopTracking(isStopTracking: boolean): void {}
+  Stop(isStopTracking: boolean): void {}
 
   /**
    * Get the data from Attribution
@@ -120,7 +125,9 @@ export class Appsflyer extends IonicNativePlugin {
     return;
   }
 
+
   /**
+   * @deprecated
    * Enables app uninstall tracking
    * @param {string} token GCM/FCM ProjectNumber
    * @returns {Promise<any>}
@@ -138,6 +145,13 @@ export class Appsflyer extends IonicNativePlugin {
   updateServerUninstallToken(token: string): void {}
 
   /**
+   * (iOS) Allows to pass APN Tokens that where collected by third party plugins to the AppsFlyer server. Can be used for Uninstall Tracking.
+   * @param {string} token APN Token
+   */
+  @Cordova({ sync: true })
+  registerUninstall(token: string): void {}
+
+  /**
    * Get AppsFlyer’s proprietary Device ID. The AppsFlyer Device ID is the main ID used by AppsFlyer in Reports and APIs.
    */
   @Cordova()
@@ -150,7 +164,7 @@ export class Appsflyer extends IonicNativePlugin {
    * @param {boolean} disable Set to true to opt-out user from tracking
    */
   @Cordova({ sync: true })
-  deviceTrackingDisabled(disable: boolean): void {}
+  anonymizeUser(disable: boolean): void {}
 
   /**
    * Set AppsFlyer’s OneLink ID. Setting a valid OneLink ID will result in shortened User Invite links, when one is generated. The OneLink ID can be obtained on the AppsFlyer Dashboard.
@@ -175,7 +189,7 @@ export class Appsflyer extends IonicNativePlugin {
    * @param {string} campaign Promoted Campaign
    */
   @Cordova({ sync: true })
-  trackCrossPromotionImpression(appId: string, campaign: string): void {}
+  logCrossPromotionImpression(appId: string, campaign: string): void {}
 
   /**
    * Use this call to track the click and launch the app store's app page (via Browser)
@@ -184,5 +198,5 @@ export class Appsflyer extends IonicNativePlugin {
    * @param {Object} options Additional Parameters to track
    */
   @Cordova({ sync: true })
-  trackAndOpenStore(appId: string, campaign: string, options: Object): void {}
+  logCrossPromotionAndOpenStore(appId: string, campaign: string, options: Object): void {}
 }

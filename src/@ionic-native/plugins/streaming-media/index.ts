@@ -53,7 +53,7 @@ export interface StreamingAudioOptions {
  *
  * @usage
  * ```typescript
- * import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+ * import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
  *
  * constructor(private streamingMedia: StreamingMedia) { }
  *
@@ -77,7 +77,7 @@ export interface StreamingAudioOptions {
   plugin: 'cordova-plugin-streaming-media',
   pluginRef: 'plugins.streamingMedia',
   repo: 'https://github.com/nchutchind/cordova-plugin-streaming-media',
-  platforms: ['Amazon Fire OS', 'Android', 'iOS']
+  platforms: ['Amazon Fire OS', 'Android', 'iOS'],
 })
 @Injectable()
 export class StreamingMedia extends IonicNativePlugin {

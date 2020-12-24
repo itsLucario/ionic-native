@@ -30,10 +30,7 @@ export interface MediaFile {
    * @param {Function} successCallback
    * @param {Function} [errorCallback]
    */
-  getFormatData(
-    successCallback: (data: MediaFileData) => any,
-    errorCallback?: (err: any) => any
-  ): any;
+  getFormatData(successCallback: (data: MediaFileData) => any, errorCallback?: (err: any) => any): any;
 }
 
 export interface MediaFileData {
@@ -108,7 +105,7 @@ export interface VideoCapturePlusOptions {
  *
  * @usage
  * ```typescript
- * import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus';
+ * import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
  *
  *
  * constructor(private videoCapturePlus: VideoCapturePlus) { }
@@ -135,7 +132,7 @@ export interface VideoCapturePlusOptions {
   plugin: 'cordova-plugin-video-capture-plus',
   pluginRef: 'window.plugins.videocaptureplus',
   repo: 'https://github.com/danielsogl/cordova-plugin-video-capture-plus',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable()
 export class VideoCapturePlus extends IonicNativePlugin {
@@ -145,7 +142,7 @@ export class VideoCapturePlus extends IonicNativePlugin {
    * @return {Promise<MediaFile[]>}
    */
   @Cordova({
-    callbackOrder: 'reverse'
+    callbackOrder: 'reverse',
   })
   captureVideo(options?: VideoCapturePlusOptions): Promise<MediaFile[]> {
     return;

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
+import { Injectable } from '@angular/core';
 
 /**
  * @name Taptic Engine
@@ -8,7 +8,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
  *
  * @usage
  * ```typescript
- * import { TapticEngine } from '@ionic-native/taptic-engine';
+ * import { TapticEngine } from '@ionic-native/taptic-engine/ngx';
  *
  * ...
  *
@@ -29,7 +29,7 @@ import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
   plugin: 'cordova-plugin-taptic-engine',
   pluginRef: 'TapticEngine',
   repo: 'https://github.com/EddyVerbruggen/cordova-plugin-taptic-engine',
-  platforms: ['iOS']
+  platforms: ['iOS'],
 })
 @Injectable()
 export class TapticEngine extends IonicNativePlugin {
@@ -49,9 +49,7 @@ export class TapticEngine extends IonicNativePlugin {
    * @returns {Promise<any>} Returns a promise that resolves on success and rejects on error
    */
   @Cordova()
-  notification(options: {
-    type: 'success' | 'warning' | 'error';
-  }): Promise<any> {
+  notification(options: { type: 'success' | 'warning' | 'error' }): Promise<any> {
     return;
   }
 

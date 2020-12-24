@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cordova, IonicNativePlugin, Plugin } from '@ionic-native/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 /**
  * @name Google Nearby
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
  *
  * @usage
  * ```typescript
- * import { GoogleNearby } from '@ionic-native/google-nearby';
+ * import { GoogleNearby } from '@ionic-native/google-nearby/ngx';
  *
  *
  * constructor(private googleNearby: GoogleNearby) { }
@@ -28,10 +28,9 @@ import { Observable } from 'rxjs/Observable';
   plugin: 'cordova-plugin-google-nearby',
   pluginRef: 'window.nearby',
   repo: 'https://github.com/hahahannes/cordova-plugin-google-nearby',
-  install:
-    'ionic cordova plugin add cordova-plugin-google-nearby --variable API_KEY="123456789"',
+  install: 'ionic cordova plugin add cordova-plugin-google-nearby --variable API_KEY="123456789"',
   installVariables: ['API_KEY'],
-  platforms: ['Android']
+  platforms: ['Android'],
 })
 @Injectable()
 export class GoogleNearby extends IonicNativePlugin {
@@ -51,7 +50,7 @@ export class GoogleNearby extends IonicNativePlugin {
    */
   @Cordova({
     observable: true,
-    clearFunction: 'unsubscribe'
+    clearFunction: 'unsubscribe',
   })
   subscribe(): Observable<any> {
     return;
